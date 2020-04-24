@@ -42,16 +42,20 @@ elif(argv[1] == '-d' or argv[1] == '--fqdn'):
         system('unzip squirrelmail-webmail-1.4.22.zip')
         system('mv squirrelmail-webmail-1.4.22 /var/www/html/')
         system('chown -R www-data:www-data /var/www/html/squirrelmail-webmail-1.4.22/')
+        system('chmod 755 -R /var/www/html/squirrelmail-webmail-1.4.22/')
+        system('mv /var/www/html/squirrelmail-webmail-1.4.22/ /var/www/html/squirrelmail')
+        
         if(path.isdir('/var/local/squirrelmail/data')):
             system('chown -R www-data:www-data /var/local/squirrelmail/data/')
         else:
-            system('mkdir -p /var/local/squirrelmail-webmail/data/') 
-        system('chmod 755 -R /var/www/html/squirrelmail-webmail-1.4.22/')
-        system('mv /var/www/html/squirrelmail-webmail-1.4.22/ /var/www/html/squirrelmail')
+            system('mkdir -p /var/local/squirrelmail-webmail/data/')
+            system('chown -R www-data:www-data /var/local/squirrelmail/data/')
         
         # Configuring Squirrel webmail
         print('Configure the Squirrel webmail manually')
         system('perl /var/www/html/squirrelmail/config/conf.pl')
+        
+        system('service apache2 restart')
 
         # Print Success
         print('\n\n-------\nSuccess\n-------\nSetting the Mail server\n\n')
