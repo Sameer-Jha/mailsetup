@@ -48,7 +48,7 @@ elif(argv[1] == '-d' or argv[1] == '--fqdn'):
         if(path.isdir('/var/local/squirrelmail/data')):
             system('chown -R www-data:www-data /var/local/squirrelmail/data/')
         else:
-            system('mkdir -p /var/local/squirrelmail-webmail/data/')
+            system('mkdir -p /var/local/squirrelmail/data/')
             system('chown -R www-data:www-data /var/local/squirrelmail/data/')
         
         # Configuring Squirrel webmail
